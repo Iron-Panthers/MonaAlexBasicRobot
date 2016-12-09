@@ -17,6 +17,23 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * creating this project, you must also update the manifest file in the resource
  * directory.
  */
+
+//Subsystem: something on the robot like motorgroup, drive subsytem (6 motors to drive) combine for simplicity,
+/* all subsystems extend subsystem, it's a subsystem
+* Only consist of methods, no main method, only methods that do stuff (like drive)
+* Drive subsystem example
+* All methods are acting on objects made in subsystem
+* Every time you make set for motor, going in and out and stop for motor
+*/
+ 
+ /* Commands like ArcadeDriveWithJoystick that extends command
+  * lots of weird things (interrupted and stuff)
+  * 	gives more functionality
+  * Get them to work with mapping (oi) 
+  * Command at motor until hit ball
+  * robot.intake.stop in then execute then isfinished robot.intake.testintakeball end robot.intake.stop
+  * map that to button or default
+  */
 public class Robot extends IterativeRobot {
 
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
