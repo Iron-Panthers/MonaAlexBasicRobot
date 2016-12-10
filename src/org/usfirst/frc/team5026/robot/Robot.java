@@ -18,51 +18,37 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 
-//Subsystem: something on the robot like motorgroup, drive subsytem (6 motors to drive) combine for simplicity,
-/* all subsystems extend subsystem, it's a subsystem
-* Only consist of methods, no main method, only methods that do stuff (like drive)
-* Drive subsystem example
-* All methods are acting on objects made in subsystem
-* Every time you make set for motor, going in and out and stop for motor
-*/
- 
- /* Commands like ArcadeDriveWithJoystick that extends command
-  * lots of weird things (interrupted and stuff)
-  * 	gives more functionality
-  * Get them to work with mapping (oi) 
-  * Command at motor until hit ball
-  * robot.intake.stop in then execute then isfinished robot.intake.testintakeball end robot.intake.stop
-  * map that to button or default
-  */
 public class Robot extends IterativeRobot {
 
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
 
-    Command autonomousCommand;
-    SendableChooser chooser;
+	Command autonomousCommand;
+	SendableChooser chooser;
+	public static Hardware hardware;
 
-    /**
-     * This function is run when the robot is first started up and should be
-     * used for any initialization code.
-     */
-    public void robotInit() {
-		oi = new OI();
-        chooser = new SendableChooser();
-        chooser.addDefault("Default Auto", new ExampleCommand());
-//        chooser.addObject("My Auto", new MyAutoCommand());
-        SmartDashboard.putData("Auto mode", chooser);
-    }
-	
 	/**
-     * This function is called once each time the robot enters Disabled mode.
-     * You can use it to reset any subsystem information you want to clear when
-	 * the robot is disabled.
-     */
-    public void disabledInit(){
+	 * This function is run when the robot is first started up and should be
+	 * used for any initialization code.
+	 */
+	public void robotInit() {
+		oi = new OI();
+		chooser = new SendableChooser();
+		chooser.addDefault("Default Auto", new ExampleCommand());
+		//        chooser.addObject("My Auto", new MyAutoCommand());
+		SmartDashboard.putData("Auto mode", chooser);
+		hardware = new Hardware();
+	}
 
-    }
-	
+	/**
+	 * This function is called once each time the robot enters Disabled mode.
+	 * You can use it to reset any subsystem information you want to clear when
+	 * the robot is disabled.
+	 */
+	public void disabledInit(){
+
+	}
+
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 	}
@@ -76,9 +62,9 @@ public class Robot extends IterativeRobot {
 	 * You can add additional auto modes by adding additional commands to the chooser code above (like the commented example)
 	 * or additional comparisons to the switch structure below with additional strings & commands.
 	 */
-    public void autonomousInit() {
-        autonomousCommand = (Command) chooser.getSelected();
-        
+	public void autonomousInit() {
+		autonomousCommand = (Command) chooser.getSelected();
+
 		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
 		switch(autoSelected) {
 		case "My Auto":
@@ -89,37 +75,37 @@ public class Robot extends IterativeRobot {
 			autonomousCommand = new ExampleCommand();
 			break;
 		} */
-    	
-    	// schedule the autonomous command (example)
-        if (autonomousCommand != null) autonomousCommand.start();
-    }
 
-    /**
-     * This function is called periodically during autonomous
-     */
-    public void autonomousPeriodic() {
-        Scheduler.getInstance().run();
-    }
+		// schedule the autonomous command (example)
+		if (autonomousCommand != null) autonomousCommand.start();
+	}
 
-    public void teleopInit() {
+	/**
+	 * This function is called periodically during autonomous
+	 */
+	public void autonomousPeriodic() {
+		Scheduler.getInstance().run();
+	}
+
+	public void teleopInit() {
 		// This makes sure that the autonomous stops running when
-        // teleop starts running. If you want the autonomous to 
-        // continue until interrupted by another command, remove
-        // this line or comment it out.
-        if (autonomousCommand != null) autonomousCommand.cancel();
-    }
+		// teleop starts running. If you want the autonomous to 
+		// continue until interrupted by another command, remove
+		// this line or comment it out.
+		if (autonomousCommand != null) autonomousCommand.cancel();
+	}
 
-    /**
-     * This function is called periodically during operator control
-     */
-    public void teleopPeriodic() {
-        Scheduler.getInstance().run();
-    }
-    
-    /**
-     * This function is called periodically during test mode
-     */
-    public void testPeriodic() {
-        LiveWindow.run();
-    }
+	/**
+	 * This function is called periodically during operator control
+	 */
+	public void teleopPeriodic() {
+		Scheduler.getInstance().run();
+	}
+
+	/**
+	 * This function is called periodically during test mode
+	 */
+	public void testPeriodic() {
+		LiveWindow.run();
+	}
 }
