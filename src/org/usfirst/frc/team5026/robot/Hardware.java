@@ -1,5 +1,7 @@
 package org.usfirst.frc.team5026.robot;
 
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.SensorBase;
 import edu.wpi.first.wpilibj.Talon;
 
 public class Hardware {
@@ -15,8 +17,11 @@ public class Hardware {
 	public MotorGroup leftSide;
 	public MotorGroup rightSide;
 
+	public DigitalInput bannersensor; 
+
 	public Talon[] leftMotors = new Talon[3];
 	public Talon[] rightMotors = new Talon[3];
+	
 
 	public Hardware() {
 		talonLeftDrive1 = new Talon(Constants.TALON_LEFT_1);

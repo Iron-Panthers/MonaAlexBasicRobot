@@ -1,12 +1,15 @@
 
 package org.usfirst.frc.team5026.robot;
 
+import org.usfirst.frc.team5026.robot.commands.ExampleCommand;
+import org.usfirst.frc.team5026.robot.subsystems.Drive;
+import org.usfirst.frc.team5026.robot.subsystems.ExampleSubsystem;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import org.usfirst.frc.team5026.robot.commands.ExampleCommand;
-import org.usfirst.frc.team5026.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -21,11 +24,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
+
 	public static OI oi;
 
 	Command autonomousCommand;
 	SendableChooser chooser;
 	public static Hardware hardware;
+	public static Drive drive;
+	public static Joystick stick; 
+
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -38,6 +45,7 @@ public class Robot extends IterativeRobot {
 		//        chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 		hardware = new Hardware();
+		drive = new Drive();
 	}
 
 	/**
@@ -64,7 +72,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void autonomousInit() {
 		autonomousCommand = (Command) chooser.getSelected();
-
+		
 		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
 		switch(autoSelected) {
 		case "My Auto":
@@ -100,6 +108,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+
 	}
 
 	/**
