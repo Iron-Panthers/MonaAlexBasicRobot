@@ -10,7 +10,13 @@ public class Constants {
 	public static final int TALON_RIGHT_2 = 5;
 	public static final int TALON_RIGHT_3 = 7;
 
-
+	public static final int JOYSTICK_PORT = 1; 
+	
+	public static final int INTAKE = 1; 
+	
+	public static final int INTAKE_IN_SPEED = 1; 
+	public static final int INTAKE_OUT_SPEED = -1;
+	
 	public static final boolean[] INVERTED_LEFT = {false, true, false};
 	public static final boolean[] INVERTED_RIGHT = {false, true, false};
 

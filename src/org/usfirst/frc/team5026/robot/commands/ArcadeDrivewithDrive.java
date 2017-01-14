@@ -11,10 +11,9 @@ public class ArcadeDrivewithDrive extends Command{
 		Robot.drive.stopMotors();
 	}
 
-	@Override
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.drive.useArcadeDrive(Robot.stick);
+		Robot.drive.useArcadeDrive(Robot.hardware.stick);
 	}
 
 	@Override
@@ -27,12 +26,13 @@ public class ArcadeDrivewithDrive extends Command{
 	// Called once after isFinished returns true
 	protected void end() {
 		//*************Doesn't this mean stop motors will never happen, considering it only returns false?
-		Robot.drive.stopMotors();
+		Robot.drive.stopMotors();;
 	}
 
 	@Override
 	// Called when another command which requires one or more of the same
     // subsystems is scheduled to run
 	protected void interrupted() {
+		end();
 	}
 }

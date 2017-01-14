@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5026.robot.subsystems;
 
 import org.usfirst.frc.team5026.robot.Robot;
+import org.usfirst.frc.team5026.robot.commands.ArcadeDrivewithDrive;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -17,6 +18,7 @@ public class Drive extends Subsystem {
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
+		setDefaultCommand(new ArcadeDrivewithDrive());
 	}
 	
 	public void setMotorSpeed(double leftSpeed, double rightSpeed) {

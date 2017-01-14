@@ -22,8 +22,7 @@ public class MotorGroup implements SpeedController {
 		return 0;
 	}
 
-	@Override
-	public void set(double speed, byte syncGroup) {
+	public void set() {
 	}
 
 	@Override
